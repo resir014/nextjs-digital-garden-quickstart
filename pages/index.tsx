@@ -1,11 +1,15 @@
 import * as React from 'react'
 import Link from 'next/link'
 import { NextPage, InferGetStaticPropsType } from 'next'
+import tw from 'twin.macro'
 
-import Page from '~/components/Page'
-import Navigation from '~/components/Navigation'
-import Content from '~/components/Content'
-import relativeTime from '~/utils/relativeTime'
+import Page from '~/components/layout/Page'
+import Navigation from '~/components/layout/Navigation'
+import Content from '~/components/layout/Content'
+import PostHeader from '~/components/posts/PostHeader'
+import PostBody from '~/components/posts/PostBody'
+
+import relativeTime from '~/lib/relativeTime'
 import { getAllPosts } from '~/lib/posts'
 
 export const getStaticProps = async () => {
@@ -22,24 +26,20 @@ const IndexPage: NextPage<IndexPageProps> = ({ allPosts }) => (
   <Page>
     <Navigation />
     <Content>
-      <h1 className="title">Hello world.</h1>
-      <ul>
-        {allPosts.map((post) => (
-          <li key={post.slug}>
-            <Link href="/posts/[...slug]" as={`/posts/${post.slug}/`}>
-              <a>{post.title}</a>
-            </Link>{' '}
-            - {relativeTime(new Date(post.date))}
-          </li>
-        ))}
-      </ul>
-      <pre>{JSON.stringify(allPosts, null, 2)}</pre>
+      <PostHeader title="Hello world." />
+      <PostBody>
+        <ul css={tw`list-disc pl-6`}>
+          {allPosts.map((post) => (
+            <li key={post.slug}>
+              <Link href="/posts/[...slug]" as={`/posts/${post.slug}/`}>
+                <a css={tw`cursor-pointer text-blue-500 hover:text-blue-700 hover:underline`}>{post.title}</a>
+              </Link>{' '}
+              - {relativeTime(new Date(post.date))}
+            </li>
+          ))}
+        </ul>
+      </PostBody>
     </Content>
-    <style jsx>{`
-      .title {
-        margin-top: 0;
-      }
-    `}</style>
   </Page>
 )
 

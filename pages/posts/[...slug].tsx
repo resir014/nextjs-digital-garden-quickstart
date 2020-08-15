@@ -1,19 +1,16 @@
 import * as React from 'react'
 import { NextPage, GetStaticProps, GetStaticPaths } from 'next'
-import Link from 'next/link'
 import Error from 'next/error'
 
 import { getPostBySlug, getAllPosts } from '~/lib/posts'
 import markdownToHtml from '~/lib/markdownToHtml'
 
-import Page from '~/components/Page'
-import Navigation from '~/components/Navigation'
-import Content from '~/components/Content'
+import Page from '~/components/layout/Page'
+import Navigation from '~/components/layout/Navigation'
+import Content from '~/components/layout/Content'
 import PostBody from '~/components/posts/PostBody'
-import relativeTime from '~/utils/relativeTime'
 import { BasePostProps } from '~/types/posts'
-
-const lastUpdated = '2018-09-25T19:30:01+07:00'
+import PostHeader from '~/components/posts/PostHeader'
 
 type BlogPostPageProps = {
   post?: BasePostProps
@@ -21,25 +18,14 @@ type BlogPostPageProps = {
 
 const BlogPostPage: NextPage<BlogPostPageProps> = ({ post }) => {
   if (post) {
-    const { title, content } = post
+    const { title, content, date } = post
     return (
       <Page title="About | Next.js TypeScript Quickstart">
         <Navigation />
         <Content>
-          <h1 className="title">{title}</h1>
+          <PostHeader title={title} date={date} />
           <PostBody content={content} />
-          <p>
-            Last updated: <time dateTime={lastUpdated}>{relativeTime(new Date(lastUpdated))}</time> |{' '}
-            <Link href="/" passHref>
-              <a>Return home</a>
-            </Link>
-          </p>
         </Content>
-        <style jsx>{`
-          .title {
-            margin-top: 0;
-          }
-        `}</style>
       </Page>
     )
   }

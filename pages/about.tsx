@@ -1,35 +1,24 @@
 import * as React from 'react'
-import Link from 'next/link'
 import { NextPage } from 'next'
 
-import Page from '~/components/Page'
-import Navigation from '~/components/Navigation'
-import Content from '~/components/Content'
-import relativeTime from '~/utils/relativeTime'
-
-const lastUpdated = '2018-09-25T19:30:01+07:00'
+import Page from '~/components/layout/Page'
+import Navigation from '~/components/layout/Navigation'
+import Content from '~/components/layout/Content'
+import PostHeader from '~/components/posts/PostHeader'
+import PostBody from '~/components/posts/PostBody'
 
 const AboutPage: NextPage = () => (
   <Page title="About | Next.js TypeScript Quickstart">
     <Navigation />
     <Content>
-      <h1 className="title">About us.</h1>
-      <p>
-        Perge porro; Igitur ne dolorem quidem. Omnes enim iucundum motum, quo sensus hilaretur. Nam, ut sint illa vendibiliora, haec
-        uberiora certe sunt. Ad corpus diceres pertinere-, sed ea, quae dixi, ad corpusne refers?
-      </p>
-      <p>
-        Last updated: <time dateTime={lastUpdated}>{relativeTime(new Date(lastUpdated))}</time> |{' '}
-        <Link href="/" passHref>
-          <a>Return home</a>
-        </Link>
-      </p>
+      <PostHeader title="About us." />
+      <PostBody>
+        <p>
+          Perge porro; Igitur ne dolorem quidem. Omnes enim iucundum motum, quo sensus hilaretur. Nam, ut sint illa vendibiliora, haec
+          uberiora certe sunt. Ad corpus diceres pertinere-, sed ea, quae dixi, ad corpusne refers?
+        </p>
+      </PostBody>
     </Content>
-    <style jsx>{`
-      .title {
-        margin-top: 0;
-      }
-    `}</style>
   </Page>
 )
 

@@ -8,8 +8,7 @@
     "paths": {
       "~/components/*": ["components/*"],
       "~/lib/*": ["lib/*"],
-      "~/types/*": ["types/*"],
-      "~/utils/*": ["utils/*"]
+      "~/types/*": ["types/*"]
     },
     "moduleResolution": "node",
     "strict": true,
