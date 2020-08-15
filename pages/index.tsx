@@ -31,7 +31,7 @@ const IndexPage: NextPage<IndexPageProps> = ({ allPosts }) => (
         <ul css={tw`list-disc pl-6`}>
           {allPosts.map((post) => (
             <li key={post.slug}>
-              <Link href="/posts/[...slug]" as={`/posts/${post.slug}/`}>
+              <Link href="/posts/[...slug]" as={`/posts/${post.slug}/`} passHref>
                 <a css={tw`cursor-pointer text-blue-500 hover:text-blue-700 hover:underline`}>{post.title}</a>
               </Link>{' '}
               - {relativeTime(new Date(post.date))}
