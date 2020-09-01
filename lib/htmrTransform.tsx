@@ -41,7 +41,8 @@ const htmrTransform: HtmrOptions['transform'] = {
       {children}
     </a>
   ),
-  pre: (props) => <pre css={tw`my-6`} {...props} />,
+  pre: (props) => <pre css={tw`my-6 py-4 px-6 rounded-md`} {...props} />,
+  code: (props) => <code css={tw`p-1 text-red700`} {...props} />,
   img: ({ alt, src, ...rest }: React.ImgHTMLAttributes<HTMLImageElement>) => <img css={tw`my-6`} alt={alt} src={src} {...rest} />,
   hr: (props) => <hr css={tw`my-6`} {...props} />
 }
